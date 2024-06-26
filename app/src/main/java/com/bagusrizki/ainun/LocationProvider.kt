@@ -11,6 +11,7 @@ object LocationProvider {
             "08:00 - 20:00",
             "senin-Jumat"
         ),
+
         LocationData(
             "Rumah Sakit PKU Bantul",
             -7.88677,

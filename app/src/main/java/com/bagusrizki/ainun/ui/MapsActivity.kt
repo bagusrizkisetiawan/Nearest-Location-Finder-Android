@@ -1,4 +1,4 @@
-package com.bagusrizki.ainun
+package com.bagusrizki.ainun.ui
 
 import android.Manifest
 import android.content.pm.PackageManager
@@ -6,6 +6,7 @@ import android.location.Location
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
+import com.bagusrizki.ainun.R
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -92,9 +93,13 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             binding.tvTelp.text = telp
 
         }
+
+
     }
 
     companion object {
         private const val LOCATION_PERMISSION_REQUEST_CODE = 1
     }
+
+
 }

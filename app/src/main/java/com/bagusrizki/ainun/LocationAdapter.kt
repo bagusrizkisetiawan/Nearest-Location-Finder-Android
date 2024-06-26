@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bagusrizki.ainun.databinding.ItemLocationBinding
+import com.bagusrizki.ainun.ui.MapsActivity
 
 class LocationAdapter(private var locations: List<Pair<LocationData, Float>>) :
     RecyclerView.Adapter<LocationAdapter.LocationViewHolder>() {

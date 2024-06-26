@@ -1,34 +1,41 @@
-package com.bagusrizki.ainun
+package com.bagusrizki.ainun.ui
 
 import android.Manifest
-import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Location
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.core.app.ActivityCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.bagusrizki.ainun.databinding.ActivityMainBinding
+import com.bagusrizki.ainun.LocationAdapter
+import com.bagusrizki.ainun.LocationProvider
+import com.bagusrizki.ainun.R
+import com.bagusrizki.ainun.databinding.ActivityUnitDonorDarahBinding
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 
-class MainActivity : AppCompatActivity() {
+class UnitDonorDarahActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityMainBinding
+    private lateinit var binding: ActivityUnitDonorDarahBinding
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     private lateinit var adapter: LocationAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
         enableEdgeToEdge()
+        binding = ActivityUnitDonorDarahBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
+        // Set up toolbar
+        setSupportActionBar(binding.toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayShowTitleEnabled(false)
 
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
 
         adapter = LocationAdapter(emptyList())
         binding.recyclerView.layoutManager = LinearLayoutManager(this)
@@ -46,7 +53,7 @@ class MainActivity : AppCompatActivity() {
             ActivityCompat.requestPermissions(
                 this,
                 arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
-                LOCATION_PERMISSION_REQUEST_CODE
+                UnitDonorDarahActivity.LOCATION_PERMISSION_REQUEST_CODE
             )
             return
         }
@@ -62,6 +69,11 @@ class MainActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        finish()
+        return true
     }
 
     private fun updateLocationList(currentLocation: Location) {
