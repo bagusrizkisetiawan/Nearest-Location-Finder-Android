@@ -9,4 +9,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name="red">#D80032</color>
     <color name="login">#FFBC42</color>
+    <color name="primary">#4179B0</color>
 </resources>

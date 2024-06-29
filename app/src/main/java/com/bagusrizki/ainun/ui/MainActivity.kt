@@ -39,6 +39,10 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        binding.menuArtikel.setOnClickListener(){
+            val intent = Intent(this, ArtikelActivity::class.java)
+            startActivity(intent)
+        }
 
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->

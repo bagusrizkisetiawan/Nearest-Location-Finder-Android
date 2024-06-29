@@ -2,6 +2,9 @@ package com.bagusrizki.ainun.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.activity.enableEdgeToEdge
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import com.bagusrizki.ainun.R
 
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -15,18 +18,25 @@ import com.bagusrizki.ainun.databinding.ActivityLokasiDonorDarahBinding
 class LokasiDonorDarahActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private lateinit var mMap: GoogleMap
-private lateinit var binding: ActivityLokasiDonorDarahBinding
+    private lateinit var binding: ActivityLokasiDonorDarahBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-     binding = ActivityLokasiDonorDarahBinding.inflate(layoutInflater)
-     setContentView(binding.root)
+        enableEdgeToEdge()
+        binding = ActivityLokasiDonorDarahBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         val mapFragment = supportFragmentManager
-                .findFragmentById(R.id.map) as SupportMapFragment
+            .findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
+
+
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.map)) { v, insets ->
+            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+            insets
+        }
     }
 
     /**
